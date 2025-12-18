@@ -161,7 +161,7 @@ const TimelineItem = ({ item, index, icon: Icon }: any) => {
 
 export default function ExperienceTimeline() {
   return (
-    <section className="py-24 bg-[#020617] relative">
+    <section id="work" className="py-24 bg-[#020617] relative">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           

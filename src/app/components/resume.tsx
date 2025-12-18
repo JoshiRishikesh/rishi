@@ -23,9 +23,9 @@ const skillCategories = [
 
 export default function ResumeSection() {
   return (
-    <section className="py-24 bg-[#020617] relative overflow-hidden">
+    <section id="resume" className="py-24 bg-[#020617] relative overflow-hidden">
       {/* Background Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-yellow-400/5 rounded-full blur-[120px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-yellow-400/5 rounded-full blur-[120px]" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-16 overflow-hidden relative">
@@ -85,7 +85,7 @@ export default function ResumeSection() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`p-6 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/[0.08] transition-colors ${
+                  className={`p-6 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/8 transition-colors ${
                     i === 0 ? "sm:col-span-2" : ""
                   }`}
                 >

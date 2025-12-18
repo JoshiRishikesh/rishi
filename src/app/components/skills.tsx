@@ -13,7 +13,7 @@ const skillSet3 = ["Google Analytics", "Search Console", "Technical SEO", "Meta 
 
 export default function SkillsSection() {
   return (
-    <section className="py-24 bg-[#020617] border-t border-white/5 overflow-hidden">
+    <section id="skills" className="py-24 bg-[#020617] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-16 items-center">
         
         {/* Left Side: Heading (1/3) */}

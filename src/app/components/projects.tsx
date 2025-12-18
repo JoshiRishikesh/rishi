@@ -38,7 +38,7 @@ export default function Projects() {
     : projects.filter(p => p.category === activeTab);
 
   return (
-    <section className="py-24 bg-[#020617] relative">
+    <section id="projects" className="py-24 bg-[#020617] relative">
       <div className="max-w-7xl mx-auto px-6">
         
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">

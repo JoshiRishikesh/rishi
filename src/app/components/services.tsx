@@ -53,7 +53,7 @@ export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24 bg-[#020617] relative">
+    <section id="services" className="py-24 bg-[#020617] relative">
       <div className="max-w-7xl mx-auto px-6">
         
         <div className="mb-16">

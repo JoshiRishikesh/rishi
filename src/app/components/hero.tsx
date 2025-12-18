@@ -4,6 +4,7 @@ import React from "react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { ChevronRight, Code, TrendingUp, Activity, Globe, Layout, type LucideIcon } from "lucide-react";
+import Link from "next/link";
 
 const GOLD = "#facc15";
 const BG_PRIMARY = "#020617";
@@ -39,7 +40,7 @@ const SkillPill: React.FC<{ icon: LucideIcon; name: string; color: string }> = (
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#020617] py-20">
+    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#020617] py-20">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-yellow-500/10 rounded-full blur-[120px]" />
@@ -85,6 +86,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 pt-4">
+               <Link href="#projects">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -93,9 +95,12 @@ export default function Hero() {
                 View Portfolio
                 <ChevronRight size={20} className="transition-transform group-hover:translate-x-1" />
               </motion.button>
+              </Link>
+              <Link href="#contact">
               <button className="px-8 py-4 rounded-xl font-bold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
                 Get in Touch
               </button>
+              </Link>
             </motion.div>
           </motion.div>
 

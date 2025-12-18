@@ -34,7 +34,7 @@ const contactCards = [
 
 export default function FinalContactSection() {
   return (
-    <section className="py-24 bg-[#020617] relative overflow-hidden">
+    <section id="contact" className="py-24 bg-[#020617] relative overflow-hidden">
       
       {/* 1. Tech Stack Marquee */}
       <div className="mb-32">
