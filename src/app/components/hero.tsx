@@ -62,7 +62,7 @@ export default function Hero() {
             <div className="space-y-4">
               <motion.div variants={item} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20">
                 <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-yellow-500">Available for Projects</span>
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-yellow-500">Creative Technologist</span>
               </motion.div>
 
               <motion.h1 variants={item} className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight">

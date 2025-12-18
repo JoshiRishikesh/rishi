@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import ContactSection from "@/app/components/contact";
 import "./globals.css";
 
 const poppins = Poppins({ 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <div className="pt-20"> {/* Adds spacing so content doesn't hide under fixed navbar */}
           {children}
         </div>
+        <ContactSection />
         <Footer />
       </body>
     </html>
