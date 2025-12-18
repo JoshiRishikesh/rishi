@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ContactSection from "@/app/components/contact";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
+import EmailButton from "@/app/components/EmailButton";
 import "./globals.css";
 
 const poppins = Poppins({ 
@@ -27,6 +29,8 @@ export default function RootLayout({
         <Navbar />
         <div className="pt-20"> {/* Adds spacing so content doesn't hide under fixed navbar */}
           {children}
+            <EmailButton />
+           <WhatsAppButton />
         </div>
         <ContactSection />
         <Footer />

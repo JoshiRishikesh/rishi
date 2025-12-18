@@ -7,23 +7,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#work" },
-  { name: "Projects", href: "#projects" },
-  { name: "Services", href: "#services" },
-  { name: "Resume", href: "#resume" },
+  { name: "Home", href: "/#home" },
+  { name: "About", href: "/#about" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Experience", href: "/#work" },
+  { name: "Projects", href: "/#projects" },
+  { name: "Services", href: "/#services" },
+  { name: "Resume", href: "/#resume" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // 🔥 Detect active section on scroll
+  // ✅ Detect active section safely
   useEffect(() => {
     const sections = navLinks
-      .map((link) => document.querySelector(link.href))
+      .map((link) => {
+        const id = link.href.split("#")[1];
+        return id ? document.getElementById(id) : null;
+      })
       .filter(Boolean) as HTMLElement[];
 
     const observer = new IntersectionObserver(
@@ -71,8 +74,8 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-10 ml-auto">
           <nav className="flex items-center gap-9">
             {navLinks.map((link, i) => {
-              const isActive =
-                activeSection === link.href.replace("#", "");
+              const linkId = link.href.split("#")[1];
+              const isActive = activeSection === linkId;
 
               return (
                 <motion.div
@@ -114,7 +117,7 @@ export default function Navbar() {
             transition={{ delay: 0.35 }}
           >
             <Link
-              href="#contact"
+              href="/#contact"
               className="bg-yellow-400/90 text-black px-6 py-2 rounded-full font-semibold text-xs tracking-wide hover:bg-yellow-500 transition-all shadow-lg shadow-yellow-400/20"
             >
               CONTACT ME
@@ -143,8 +146,8 @@ export default function Navbar() {
             className="md:hidden absolute top-full left-0 w-full bg-[#020617]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl py-8 flex flex-col items-center gap-6"
           >
             {navLinks.map((link) => {
-              const isActive =
-                activeSection === link.href.replace("#", "");
+              const linkId = link.href.split("#")[1];
+              const isActive = activeSection === linkId;
 
               return (
                 <Link
@@ -165,7 +168,7 @@ export default function Navbar() {
             })}
 
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setIsOpen(false)}
               className="mt-2 bg-yellow-400 text-black px-10 py-2.5 rounded-full font-bold text-sm"
             >

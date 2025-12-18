@@ -93,7 +93,7 @@ export default function About() {
 
             {/* NEW BUTTON HERE */}
             <div className="pt-2">
-              <Link href="/about">
+              <Link href="/about_me">
                 <motion.button
                   whileHover={{ x: 5 }}
                   className="group flex items-center gap-2 text-white font-semibold hover:text-yellow-400 transition-colors"
