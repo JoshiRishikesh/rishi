@@ -3,116 +3,131 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
-import { Code, TrendingUp, Activity, Globe, Layout, type LucideIcon } from "lucide-react";
+import { ChevronRight, Code, TrendingUp, Activity, Globe, Layout, type LucideIcon } from "lucide-react";
 
 const GOLD = "#facc15";
 const BG_PRIMARY = "#020617";
-const BG_ACCENT = "#0b1220";
 
 const container: Variants = {
-  hidden: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)", 
+    transition: { type: "spring", damping: 25, stiffness: 100 } 
+  },
 };
 
 const SkillPill: React.FC<{ icon: LucideIcon; name: string; color: string }> = ({ icon: Icon, name, color }) => (
   <motion.div
-    className="flex items-center gap-2 py-1 px-3 rounded-full bg-gradient-to-br from-[#1e273a] to-[#101725] border border-gray-700 shadow-inner hover:scale-105 transition-transform duration-300 cursor-pointer"
-    whileHover={{ boxShadow: `0 0 12px ${color}40, 0 0 25px ${color}20` }}
+    variants={item}
+    className="group flex items-center gap-3 py-2 px-5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300 cursor-default"
+    whileHover={{ y: -3, boxShadow: `0 10px 20px -10px ${color}60` }}
   >
-    <Icon className="w-4 h-4" style={{ color }} strokeWidth={2.5} />
-    <span className="text-gray-300 text-sm font-semibold">{name}</span>
+    <Icon className="w-5 h-5 transition-transform group-hover:scale-110" style={{ color }} strokeWidth={2} />
+    <span className="text-gray-200 text-sm font-medium tracking-wide">{name}</span>
   </motion.div>
 );
 
-
 export default function Hero() {
   return (
-    <section
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: `radial-gradient(circle at top right, ${BG_ACCENT} 0%, ${BG_PRIMARY} 60%)` }}
-    >
-      <div className="absolute top-1/4 -left-24 w-96 h-96 bg-yellow-400/10 rounded-full blur-[140px]" />
-      <div className="absolute bottom-1/4 -right-24 w-96 h-96 bg-blue-500/5 rounded-full blur-[140px]" />
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.04] pointer-events-none" />
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#020617] py-20">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-yellow-500/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-blue-600/10 rounded-full blur-[120px]" />
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150" />
+        <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(#ffffff05 1px, transparent 1px), linear-gradient(90deg, #ffffff05 1px, transparent 1px)`, backgroundSize: '50px 50px' }} />
+      </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        
-        <motion.div
-          className="flex flex-col items-start text-left"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }}
-          variants={container}
-        >
-          <motion.span
-            variants={item}
-            className="text-sm tracking-[0.35em] uppercase font-semibold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-200 mb-3"
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Content */}
+          <motion.div 
+            className="lg:col-span-7 space-y-8"
+            initial="hidden"
+            animate="visible"
+            variants={container}
           >
-            Logic Driven. Growth Focused.
-          </motion.span>
+            <div className="space-y-4">
+              <motion.div variants={item} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20">
+                <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-yellow-500">Available for Projects</span>
+              </motion.div>
 
-          <motion.h1
-            variants={item}
-            className="text-[44px] sm:text-[60px] md:text-[84px] lg:text-[92px] font-extrabold leading-[0.9] tracking-[-0.04em] text-white"
-          >
-            Rishikesh
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-gray-100">
-              Joshi
-            </span>
-          </motion.h1>
+              <motion.h1 variants={item} className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight">
+                Rishikesh <br />
+                <span className="text-transparent bg-clip-text bg-linear-to-br from-yellow-300 via-yellow-500 to-orange-400">
+                  Joshi
+                </span>
+              </motion.h1>
 
-            <motion.p
-            variants={item}
-            className="mt-7 max-w-xl text-gray-300 text-[16px] sm:text-[18px] leading-[1.8]"
-            >
-            I build web applications and websites that drive real results for businesses and users alike. I manage <span className="text-yellow-400 font-semibold">Meta Ads</span> campaigns, optimize messaging costs, and leverage <span className="text-yellow-400 font-semibold">Google My Business</span> to boost online visibility. Every project is enhanced with <span className="text-yellow-400 font-semibold">Google Analytics</span>, meta tags, and SEO best practices to ensure it’s measurable, efficient, and growth-focused.
-            </motion.p>
+              <motion.p variants={item} className="max-w-xl text-gray-400 text-lg md:text-xl leading-relaxed">
+                Architecting <span className="text-white font-medium">high-performance</span> digital experiences. I bridge the gap between clean code and aggressive market growth through SEO, Ads, and intuitive UI.
+              </motion.p>
+            </div>
 
-            <motion.div variants={item} className="mt-6 flex flex-wrap gap-3">
-            <SkillPill icon={Code} name="Web Development" color={GOLD} />
-            <SkillPill icon={TrendingUp} name="Meta Ads Management" color="#5865f2" />
-            <SkillPill icon={Activity} name="SEO & Analytics" color="#3ccf4e" />
-            <SkillPill icon={Globe} name="Google My Business" color="#f87171" />
-            <SkillPill icon={Layout} name="UI/UX Design" color="#a855f7" />
+            <motion.div variants={item} className="flex flex-wrap gap-3">
+              <SkillPill icon={Code} name="Web Dev" color={GOLD} />
+              <SkillPill icon={TrendingUp} name="Meta Ads" color="#60a5fa" />
+              <SkillPill icon={Activity} name="SEO" color="#4ade80" />
+              <SkillPill icon={Layout} name="UI/UX" color="#c084fc" />
             </motion.div>
 
-
-          <motion.div variants={item} className="mt-10">
-            <motion.button
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.95 }}
-              animate={{ y: [0, -4, 0] }}
-              transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-              className="group relative px-9 py-3 rounded-full font-bold text-black bg-gradient-to-r from-yellow-400 to-yellow-300 shadow-lg hover:shadow-[0_0_25px_rgba(250,204,21,0.6)] transition-all overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Explore My Work
-                <ChevronRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
-            </motion.button>
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 pt-4">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group px-8 py-4 rounded-xl font-bold text-black bg-yellow-400 hover:bg-yellow-300 shadow-[0_20px_40px_-12px_rgba(250,204,21,0.3)] transition-all flex items-center justify-center gap-2"
+              >
+                View Portfolio
+                <ChevronRight size={20} className="transition-transform group-hover:translate-x-1" />
+              </motion.button>
+              <button className="px-8 py-4 rounded-xl font-bold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                Get in Touch
+              </button>
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40, rotateY: 8 }}
-          animate={{ opacity: 1, x: 0, rotateY: 0 }}
-          transition={{ duration: 1.1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
-          className="flex justify-center"
-        >
-          <div className="relative w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[26rem]">
-            <div className="absolute inset-0 bg-yellow-400/15 blur-3xl rounded-[2.5rem]" />
-            <div className="absolute inset-0 bg-white/5 border border-white/15 backdrop-blur-xl rounded-[2.5rem]" />
-            <Image src="/rishi.avif" alt="Rishikesh Joshi" fill priority className="relative z-10 object-cover rounded-[2.5rem] shadow-2xl shadow-black/50" />
-          </div>
-        </motion.div>
+          {/* Right Image Card */}
+          <motion.div 
+            className="lg:col-span-5 relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="relative aspect-4/5 w-full max-w-100 mx-auto group">
+              {/* Animated Glow Behind Image */}
+              <div className="absolute -inset-4 bg-linear-to-tr from-yellow-500/20 to-blue-500/20 blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+              
+              <div className="relative h-full w-full rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+                <Image
+                  src="/rishi.avif"
+                  alt="Rishikesh Joshi"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  priority
+                />
+                {/* Floating Badge */}
+                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 translate-y-2 group-hover:translate-y-0 transition-transform">
+                  <p className="text-white font-bold">Rishikesh Joshi</p>
+                  <p className="text-yellow-400 text-xs uppercase tracking-wider font-semibold">Fullstack Developer & Marketer</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
+        </div>
       </div>
     </section>
   );
